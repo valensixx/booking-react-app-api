@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const User = require('./models/User.js');
 require('dotenv').config();
 const app = express();  
 
@@ -18,6 +19,8 @@ app.get('/test', (req,res)=>{
 
 app.post('/register',(req, res) => {
     const {name, email, password} = req.body;
+    User.create()
+
     res.json({name, email, password});
 });
 

@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["bcryptjs", "npm:2.4.3"],\
             ["cors", "npm:2.8.5"],\
             ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
@@ -81,6 +82,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["api", "workspace:."],\
+            ["bcryptjs", "npm:2.4.3"],\
             ["cors", "npm:2.8.5"],\
             ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
@@ -94,6 +96,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/array-flatten-npm-1.1.1-9d94ad5f1d-a9925bf351.zip/node_modules/array-flatten/",\
           "packageDependencies": [\
             ["array-flatten", "npm:1.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["bcryptjs", [\
+        ["npm:2.4.3", {\
+          "packageLocation": "./.yarn/cache/bcryptjs-npm-2.4.3-32de4957eb-0e80ed852a.zip/node_modules/bcryptjs/",\
+          "packageDependencies": [\
+            ["bcryptjs", "npm:2.4.3"]\
           ],\
           "linkType": "HARD"\
         }]\

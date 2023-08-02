@@ -12,9 +12,10 @@ const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'gmgeing44mdf4mkdf';
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:5174',
+    origin: 'http://localhost:5173',
 }));
 app.use(cookieParser());
 
@@ -44,7 +45,7 @@ app.post('/login', async (req, res) => {
     if (userDoc) {
         const passOk = bcrypt.compareSync(password, userDoc.password);
         if (passOk) {
-            jwt.sign({ email: userDoc.email, id: userDoc._id }, jwtSecret, {}, (err, token) => {
+            jwt.sign({ email: userDoc.email, id: userDoc._id}, jwtSecret, {}, (err, token) => {
                 if (err) throw err;
                 res.cookie('token', token).json(userDoc);
             });
@@ -59,7 +60,16 @@ app.post('/login', async (req, res) => {
 // Added the missing forward slash in the '/profile' route
 app.get('/profile', (req, res) => {
     const { token } = req.cookies;
-    res.json({ token });
+    if (token){
+        jwt.verify(token, jwtSecret, {}, async (err, userData) =>{
+            if (err) throw err;
+            const {name, email, _id} = await User.findById(userData.id);
+            res.json({name, email, _id});
+        });
+    } else {
+        res.json(null);
+    }
+
 });
 
 app.listen(4000);

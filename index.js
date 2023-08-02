@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User.js');
+const CookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
 
@@ -53,5 +54,10 @@ app.post('/login', async (req,res)=>{
         res.json('not found');
     }
 });
+
+app.get('profile', (req, res) => {
+    const {token} = req.cookies;
+    res.json({token});
+})
 
 app.listen(4000);
